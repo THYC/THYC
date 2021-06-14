@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>{% block title %}{% endblock %}</h4>
+    {% for d in doc %}
+        <div class="container">
+            <div class="row badge badge-secondary w-100 border border-white">
+                <div class="col-12">
+                    <h5>{{ d['code'] }} - {{ d['libelle'] }}</h5>
+                </div>
+            </div>
+            <form method="POST">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="codeDocument">Code document</label>
+                            <input type="text" class="form-control border border-danger bg-info" id="codeDocument" name="codeDocument" placeholder="Code du document" value={{ d['code']|string }}>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="form-group">
+                            <label for="libelleDocument">Libelle</label>
+                            <input type="text" class="form-control" id="libelleDocument" name="libelleDocument" placeholder="Libelle" value="{{ d['libelle'] }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="lienDocument">Lien document</label>
+                            <input type="text" class="form-control" id="lienDocument" name="lienDocument" placeholder="Lien document" value="{{ d['lien'] }}">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="lienDocument">Upload document</label>
+                            <input type="file" class="form-control" id="document" name="document" accept=".pdf">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="etiquetteDocument">Etiquette document</label>
+                            <input type="textarea" class="form-control" id="etiquetteDocument" name="etiquetteDocument" aria-describedby="dossierHelp" placeholder="Etiquette document" value="{{ d['etiquette'] }}">
+                            <small id="dossierHelp" class="form-text text-muted">Indiquer ici l'ensemble des étiquettes servant à retrouver ce document, le mot ou ensemble de mot doit être placé entre 2 points virgule, ex:';etiq1;etiq2;mon etiquette;'" </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="dateCreation">Date de création</label>
+                            <input type="date" class="form-control" id="dateCreation" name="dateCreation" placeholder="Date création du document" value="{{ d['date_creation'] }}">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="dateMaj">Date de maj</label>
+                            <input type="date" class="form-control" id="dateMaj" name="dateMaj" placeholder="Date de mise à jour du document" value="{{ d['date_maj'] }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" name="enregistre" class="btn btn-primary link-button" value="enregistre"><i class="fa fa-database fa-1x"></i> Enregistre</button>
+                        <button type="submit" name="ajoute" class="btn btn-success link-button"><i class="fa fa-plus fa-1x"></i> Ajoute</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endfor %}
+{% endblock %}

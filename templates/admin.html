@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <li class="nav-item ">
+        <a href="{{ url_for('user')}}"><button class="btn link-button text-white"><i class="fa fa-home fa-2x text-white"></i> Test</button></a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('user')}}"><button class="btn link-button text-white"><i class="fa fa-home fa-2x text-white"></i> Test2</button></a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 badge badge-dark w-70 border border-white">
+            <h6>{% block title %}{{ filtre }}{% endblock %}</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 badge badge-danger w-70 border border-white">
+            <h6>Libelle</h6>
+        </div>
+        <div class="col-2 badge badge-danger w-70 border border-white">
+            <h6>Créé le</h6>
+        </div>
+        <div class="col-2 badge badge-danger w-70 border border-white">
+            <h6>Date Maj</h6>
+        </div>
+    </div>
+    {% for d in doc %}
+    <div class="row">
+        <div class="col-8 badge badge-secondary w-70 border border-white">
+            <a href="./code/{{ d['code'] }}"><i class="fa fa-pencil-square-o fa-2x text-white"></i></a>
+            <a href="../document/{{ d['lien'] }}" class="badge">
+                <h6>{{ d['code'] }} - {{ d['libelle'] }}</h6>
+            </a>
+        </div>
+        <div class="col-2 badge badge-secondary w-70 border border-white">
+            <h6>{{ d['date_creation'] }}</h6>
+        </div>
+        <div class="col-2 badge badge-secondary w-70 border border-white">
+            <h6>{{ d['date_maj'] }}</h6>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
