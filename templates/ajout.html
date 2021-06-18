@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Nouveau documents{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row badge badge-secondary w-100 border border-white">
+            <div class="col-12">
+                <h5>Nouveau document</h5>
+            </div>
+        </div>
+        <form method="POST" enctype=multipart/form-data>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="codeDocument">Code document</label>
+                        <input type="text" class="form-control border border-dark" id="codeDocument" name="codeDocument" placeholder="Code du document">
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <label for="libelleDocument">Libelle</label>
+                        <input type="text" class="form-control border border-dark" id="libelleDocument" name="libelleDocument" placeholder="Libelle">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="lienDocument">Lien document</label>
+                        <input type="text" class="form-control border border-dark" id="lienDocument" name="lienDocument" placeholder="Lien document">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="lienDocument">Upload document</label>
+                        <input type="file" class="form-control border border-dark" id="document" name="document" accept=".pdf">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="etiquetteDocument">Etiquette document</label>
+                        <input type="textarea" class="form-control border border-dark" id="etiquetteDocument" name="etiquetteDocument" aria-describedby="etiquetteHelp" placeholder="Etiquette document">
+                        <small id="etiquetteHelp" class="form-text text-muted">Indiquer ici l'ensemble des étiquettes ou mots clés servant à retrouver ce document, le mot ou ensemble de mot doit être placé entre 2 points virgule, ex:';PORTE;REC;OP19;DUBUS;SAPIN;'" </small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="dateCreation">Date de création</label>
+                        <input type="date" class="form-control border border-dark" id="dateCreation" name="dateCreation" placeholder="Date création du document">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="dateMaj">Date de maj</label>
+                        <input type="date" class="form-control border border-dark" id="dateMaj" name="dateMaj" placeholder="Date de mise à jour du document">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" name="enregistre" class="btn btn-primary link-button" value="enregistre"><i class="fa fa-database fa-1x"></i> Enregistre</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

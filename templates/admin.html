@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 
+{% block title %}Gestion documents{% endblock %}
+
 {% block nav %}
-    <li class="nav-item ">
-        <a href="{{ url_for('user')}}"><button class="btn link-button text-white"><i class="fa fa-home fa-2x text-white"></i> Test</button></a>
+    <li class="nav-item">
+        <a href="{{ url_for('upload')}}"><button class="btn link-button text-white border border-white bg-info"><i class="fa fa-upload fa-2x text-white"></i> Upload</button></a>
     </li>
     <li class="nav-item">
-        <a href="{{ url_for('user')}}"><button class="btn link-button text-white"><i class="fa fa-home fa-2x text-white"></i> Test2</button></a>
+        <a href="{{ url_for('add_doc')}}"><button class="btn link-button text-white border border-white bg-secondary"><i class="fa fa-file fa-2x text-white"></i> Nouveau</button></a>
     </li>
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-12 badge badge-dark w-70 border border-white">
-            <h6>{% block title %}{{ filtre }}{% endblock %}</h6>
+            <h6>{{ filtre }}</h6>
         </div>
     </div>
     <div class="row">
@@ -29,7 +31,10 @@
     {% for d in doc %}
     <div class="row">
         <div class="col-8 badge badge-secondary w-70 border border-white">
-            <a href="./code/{{ d['code'] }}"><i class="fa fa-pencil-square-o fa-2x text-white"></i></a>
+            <button class="btn btn-default btn-xs btn-custom-xs link-button-xs bg-primary border border-white"><a href="./code/{{ d['code'] }}"><i class="fa fa-pencil-square-o fa-1x text-white"></i></a></button>
+            <form method="GET">
+                <button type="submit" name="del" class="btn btn-default btn-xs btn-custom-xs link-button-xs bg-danger border border-white"><a href="./del/{{ d['code'] }}"><i class="fa fa-trash fa-1x text-white"></i></a></button>
+            </form>
             <a href="../document/{{ d['lien'] }}" class="badge">
                 <h6>{{ d['code'] }} - {{ d['libelle'] }}</h6>
             </a>

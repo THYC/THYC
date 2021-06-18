@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
+{% block title %}Edition documents{% endblock %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a href="{{ url_for('add_doc')}}"><button class="btn link-button text-white border border-white bg-secondary"><i class="fa fa-file fa-2x text-white"></i> Nouveau</button></a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('upload')}}"><button class="btn link-button text-white border border-white bg-info"><i class="fa fa-upload fa-2x text-white"></i> Upload</button></a>
+    </li>
+{% endblock %}
+
 {% block content %}
-    <h4>{% block title %}{% endblock %}</h4>
     {% for d in doc %}
         <div class="container">
             <div class="row badge badge-secondary w-100 border border-white">
@@ -9,7 +19,7 @@
                     <h5>{{ d['code'] }} - {{ d['libelle'] }}</h5>
                 </div>
             </div>
-            <form method="POST">
+            <form method="POST" enctype=multipart/form-data>
                 <div class="row">
                     <div class="col-2">
                         <div class="form-group">
@@ -20,7 +30,7 @@
                     <div class="col-10">
                         <div class="form-group">
                             <label for="libelleDocument">Libelle</label>
-                            <input type="text" class="form-control" id="libelleDocument" name="libelleDocument" placeholder="Libelle" value="{{ d['libelle'] }}">
+                            <input type="text" class="form-control border border-dark" id="libelleDocument" name="libelleDocument" placeholder="Libelle" value="{{ d['libelle'] }}">
                         </div>
                     </div>
                 </div>
@@ -28,13 +38,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="lienDocument">Lien document</label>
-                            <input type="text" class="form-control" id="lienDocument" name="lienDocument" placeholder="Lien document" value="{{ d['lien'] }}">
+                            <input type="text" class="form-control border border-dark" id="lienDocument" name="lienDocument" placeholder="Lien document" value="{{ d['lien'] }}">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="lienDocument">Upload document</label>
-                            <input type="file" class="form-control" id="document" name="document" accept=".pdf">
+                            <input type="file" class="form-control border border-dark" id="document" name="document" accept=".pdf">
                         </div>
                     </div>
                 </div>
@@ -42,8 +52,8 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="etiquetteDocument">Etiquette document</label>
-                            <input type="textarea" class="form-control" id="etiquetteDocument" name="etiquetteDocument" aria-describedby="dossierHelp" placeholder="Etiquette document" value="{{ d['etiquette'] }}">
-                            <small id="dossierHelp" class="form-text text-muted">Indiquer ici l'ensemble des étiquettes servant à retrouver ce document, le mot ou ensemble de mot doit être placé entre 2 points virgule, ex:';etiq1;etiq2;mon etiquette;'" </small>
+                            <input type="textarea" class="form-control border border-dark" id="etiquetteDocument" name="etiquetteDocument" aria-describedby="etiquetteHelp" placeholder="Etiquette document" value="{{ d['etiquette'] }}">
+                            <small id="etiquetteHelp" class="form-text text-muted">Indiquer ici l'ensemble des étiquettes ou mots clés servant à retrouver ce document, le mot ou ensemble de mot doit être placé entre 2 points virgule, ex:';PORTE;REC;OP19;DUBUS;SAPIN;'" </small>
                         </div>
                     </div>
                 </div>
@@ -51,20 +61,20 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label for="dateCreation">Date de création</label>
-                            <input type="date" class="form-control" id="dateCreation" name="dateCreation" placeholder="Date création du document" value="{{ d['date_creation'] }}">
+                            <input type="date" class="form-control border border-dark" id="dateCreation" name="dateCreation" placeholder="Date création du document" value="{{ d['date_creation'] }}">
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label for="dateMaj">Date de maj</label>
-                            <input type="date" class="form-control" id="dateMaj" name="dateMaj" placeholder="Date de mise à jour du document" value="{{ d['date_maj'] }}">
+                            <input type="date" class="form-control border border-dark" id="dateMaj" name="dateMaj" placeholder="Date de mise à jour du document" value="{{ d['date_maj'] }}">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" name="enregistre" class="btn btn-primary link-button" value="enregistre"><i class="fa fa-database fa-1x"></i> Enregistre</button>
-                        <button type="submit" name="ajoute" class="btn btn-success link-button"><i class="fa fa-plus fa-1x"></i> Ajoute</button>
+                        <button type="submit" name="enregistre" class="btn btn-primary link-button border border-dark" value="enregistre"><i class="fa fa-database fa-1x"></i> Enregistre</button>
+                        <button type="submit" name="ajoute" class="btn btn-success link-button border border-dark"><i class="fa fa-plus fa-1x"></i> Ajoute</button>
                     </div>
                 </div>
             </form>

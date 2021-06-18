@@ -5,30 +5,19 @@
     {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
 {% endblock %}
 
+{% block nav %}
+    <li class="nav-item ">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <a href="{{ url_for('admin')}}"><button type="submit" class="btn link-button text-white border border-white bg-danger"><i class="fa fa-upload fa-2x text-white"></i> Upload </button></a>
+        </form>
+    </li>
+{% endblock %}
+
 {% block title %}Upload document{% endblock %}
 
 {% block content %}
     {{ dropzone.create(action='/upload/') }}
     {{ dropzone.config() }}
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <form action="/upload" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>Select image</label>
-
-                        <div class="custom-file">
-                            <!--<input type="file" class="custom-file-input" name="document" id="document">-->
-                            <!--<input type="file" class="form-control" id="document" name="document" accept=".pdf">-->
-
-                            <input type="text" class="form-control" id="lienDocument" name="lienDocument" placeholder="Lien document" value={{ lien }}>
-
-                        </div>
-
-                    </div>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </form>
-            </div>
-        </div>
     </div>
 {% endblock %}
