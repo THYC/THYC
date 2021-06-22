@@ -8,15 +8,17 @@ from flask_dropzone import Dropzone
 import os
 import array
 
+from document import Document
+
 UPLOAD_FOLDER = './static/document/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-adm: array = ['thyc2', 'admin']
+adm: array = ['thyc', 'admin']
 dropzone = Dropzone(app)
-
 app.secret_key = 'super_secret_key'
+# docu = Document("", "", "", "", "", "")
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -144,10 +146,9 @@ def get_doc_by_filter():
     etiquette: str = request.args.get('filter').upper()
     vs: str = request.args.get('radio')
 
-    check_or = ""
-    check_and = ""
+    # check_or = ""
+    # check_and = ""
 
-    print(vs)
     if vs == "ET":
         vs = "AND"
         check_and = "checked"
@@ -179,7 +180,7 @@ def get_doc_by_filter():
         conn.row_factory = sqlite3.Row
         db = conn.cursor()
         rows = db.execute(
-            'SELECT *, date(creation) AS date_creation, date(maj) AS date_maj  FROM doc WHERE etiquette LIKE ? ' + vs + ' libelle Like ? ' + vs + ' code LIKE ? ORDER BY code;',
+            'SELECT *, date(creation) AS date_creation, date(maj) AS date_maj  FROM doc WHERE etiquette LIKE ? OR libelle Like ? OR code LIKE ? ORDER BY code;',
             [etiquette, libelle, code]).fetchall()
         return render_template(page, doc=rows, filtre=filtre, filter=request.args.get('filter').upper(),
                                check_and=check_and, check_or=check_or, etat=etat)
